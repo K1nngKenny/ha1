@@ -9,6 +9,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
 
     @Test
+    @DisplayName("test regular input 12345")
+    void testRegularInput() {
+        //testfall einrichten
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(1);
+        calculator.pressDigitKey(2);
+        calculator.pressDigitKey(3);
+        calculator.pressDigitKey(4);
+        calculator.pressDigitKey(5);
+
+        //erwartetes ergebniss
+        String expectedResult = "12345";
+        String actual = calculator.readScreen();
+
+        //vergleich ob test erfolgreich ist
+        assertEquals(expectedResult, actual);
+    }
+
+    @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
         Calculator calc = new Calculator();
@@ -90,5 +109,26 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("shouldnt allow multiple oprerrators")
+    void testMultipleOprerrators() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
+
+
+
+
 
