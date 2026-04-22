@@ -109,6 +109,8 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    // Aufgabe 2
     @Test
     @DisplayName("shouldnt allow multiple oprerrators")
     void testMultipleOprerrators() {
@@ -125,6 +127,39 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
 
+    }
+    //Aufgabe 3
+    @Test
+    @DisplayName("should clear completely aufter pressing C")
+    void testClearComplete() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(7);
+        calc.pressClearKey();
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should cut the .0 out the unary resoult")
+    void testCut() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressDotKey();
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("√");
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 }
 
