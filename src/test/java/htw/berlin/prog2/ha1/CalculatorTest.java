@@ -154,7 +154,6 @@ class CalculatorTest {
         calc.pressDotKey();
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("√");
-        calc.pressEqualsKey();
 
         String expected = "3";
         String actual = calc.readScreen();
